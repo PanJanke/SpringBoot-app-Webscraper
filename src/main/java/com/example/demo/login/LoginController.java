@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
 
+    public LoginController(AutheticationService autheticationService) {
+        this.autheticationService = autheticationService;
+    }
 
     private AutheticationService autheticationService;
 
@@ -28,6 +31,8 @@ public class LoginController {
             model.put("password", password);
             return "welcome";
         }
+
+        return "login";
 
 
 
