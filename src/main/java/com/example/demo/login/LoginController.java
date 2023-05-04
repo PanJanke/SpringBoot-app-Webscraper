@@ -32,6 +32,8 @@ public class LoginController {
             return "welcome";
         }
 
+        model.put("errorMessage", "Invalid Credentials! Please try again.");
+
         return "login";
 
 
