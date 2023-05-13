@@ -28,10 +28,19 @@ public class Todo {
     private int id;
     private String username;
 
-    @Size(min=10, message="Enter atleast 10 characters")
+    @Size(min=10, message="Enter at least 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean done;
+    private String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public int getId() {
         return id;
