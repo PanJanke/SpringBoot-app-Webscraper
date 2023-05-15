@@ -3,6 +3,8 @@ package com.example.demo.todo;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.example.demo.apartment.Apartment;
+import com.example.demo.apartment.ApartmentService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,12 +21,15 @@ import jakarta.validation.Valid;
 @SessionAttributes("name")
 public class TodoControllerJpa {
 
-    public TodoControllerJpa(TodoRepository todoRepository) {
+    public TodoControllerJpa(TodoRepository todoRepository,ApartmentService apartmentService) {
         super();
         this.todoRepository = todoRepository;
+        this.apartmentService = apartmentService;
     }
 
     private TodoRepository todoRepository;
+    private ApartmentService apartmentService;
+
 
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model) {
@@ -38,16 +43,18 @@ public class TodoControllerJpa {
 
     //GET, POST
     @RequestMapping(value="add-todo", method = RequestMethod.GET)
-    public String showNewTodoPage(ModelMap model) {
+    public String showNewTodoPage(ModelMap model,@RequestParam int id) {
         String username = getLoggedInUsername(model);
-        Todo todo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
+        String link = apartmentService.getById(id).getWebAddress();
+        Todo todo = new Todo(0, username, "",link, LocalDate.now(), false);
+
         model.put("todo", todo);
         return "todo";
     }
 
     @RequestMapping(value="add-todo", method = RequestMethod.POST)
     public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-
+        System.out.println(todo.getWebAdress());
         if(result.hasErrors()) {
             return "todo";
         }
@@ -60,10 +67,8 @@ public class TodoControllerJpa {
 
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
-
         todoRepository.deleteById(id);
         return "redirect:list-todos";
-
     }
 
     @RequestMapping(value="update-todo", method = RequestMethod.GET)

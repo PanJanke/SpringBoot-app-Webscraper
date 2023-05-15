@@ -23,7 +23,7 @@
   <label for="pages">Number of Pages:</label>
   <input type="number" id="pages" name="pages" min="1" value="4"><br><br>
 
-  <input type="submit" value="Submit">
+  <input type="submit" value="Scrap">
 </form>
 
 

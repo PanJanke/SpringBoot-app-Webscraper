@@ -26,7 +26,7 @@
                     <td>${apart.price}</td>
                     <td>${apart.pricePerSquareMeter}</td>
                     <td>${apart.numOfRooms}</td>
-                    <td> <a href="delete-todo?id=${todo.id}" class="btn btn-warning">Observe</a>   </td>
+                    <td> <a href="add-todo?id=${todo.id}" class="btn btn-warning">Observe</a>   </td>
 
                 </tr>
             </c:forEach>

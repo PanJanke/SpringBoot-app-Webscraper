@@ -14,11 +14,12 @@ public class Todo {
     public Todo(){}
 
 
-    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
+    public Todo(int id, String username, String description,String link, LocalDate targetDate, boolean done) {
         super();
         this.id = id;
         this.username = username;
         this.description = description;
+        this.webAdress = link;
         this.targetDate = targetDate;
         this.done = done;
     }
@@ -32,14 +33,14 @@ public class Todo {
     private String description;
     private LocalDate targetDate;
     private boolean done;
-    private String link;
+    private String webAdress;
 
-    public String getLink() {
-        return link;
+    public String getWebAdress() {
+        return webAdress;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setWebAdress(String webAdress) {
+        this.webAdress = webAdress;
     }
 
     public int getId() {

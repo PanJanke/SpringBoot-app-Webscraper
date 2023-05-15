@@ -1,6 +1,8 @@
 package com.example.demo.todo;
 
 
+import com.example.demo.apartment.Apartment;
+import com.example.demo.apartment.ApartmentService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,11 +22,13 @@ public class TodoController {
 
 
     private TodoService todoService;
+    private ApartmentService apartmentService;
 
 
 
-    public TodoController(TodoService todoService) {
+    public TodoController(TodoService todoService, ApartmentService apService) {
         this.todoService = todoService;
+        this.apartmentService = apService;
     }
 
     @RequestMapping("list-todos")
@@ -38,9 +42,13 @@ public class TodoController {
 
 
     @RequestMapping(value="add-todo",method = RequestMethod.GET)
-    public String showNewTodoPage(ModelMap model){
+    public String showNewTodoPage(ModelMap model,@RequestParam int id){
         String username = getLoggedInUserName(model);
-        Todo todo = new Todo(0,username,"",LocalDate.now().plusYears(1),false);
+        Todo todo = new Todo(0,username,"","",LocalDate.now().plusYears(1),false);
+        Apartment apartment = apartmentService.getById(id);
+        if(apartment != null) {
+            todo.setWebAdress(apartment.getWebAddress());
+        }
         model.put("todo",todo);
         return "todo";
     }
@@ -48,11 +56,12 @@ public class TodoController {
     @RequestMapping(value="add-todo",method = RequestMethod.POST)
     public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result){
 
+
         if(result.hasErrors()){
             return "todo";
         }
 
-        todoService.addTodo((String)model.get("name"),todo.getDescription(), todo.getTargetDate(),false);
+        todoService.addTodo((String)model.get("name"),todo.getDescription(),todo.getWebAdress(), todo.getTargetDate(),false);
         return "redirect:list-todos";
     }
 

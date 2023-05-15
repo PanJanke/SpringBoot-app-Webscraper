@@ -14,7 +14,7 @@ public class TodoService {
 
     private static List<Todo> todos = new ArrayList<>();
     private  static  int todosCount=0;
-    static {
+    /*static {
         todos.add(new Todo(++todosCount, "admin","Learn AWS",
                 LocalDate.now().plusYears(1), false ));
         todos.add(new Todo(++todosCount, "admin","Learn DevOps",
@@ -22,13 +22,15 @@ public class TodoService {
         todos.add(new Todo(++todosCount, "admin","Learn Full Stack Development",
                 LocalDate.now().plusYears(3), false ));
     }
+    */
+
 
     public static List<Todo> getTodos() {
         return todos.stream().sorted(Comparator.comparingInt(Todo::getId)).collect(Collectors.toList());
     }
 
-    public void addTodo(String username,String description,LocalDate targetDate, Boolean done ){
-        Todo todo = new Todo(++todosCount,username,description,targetDate,done);
+    public void addTodo(String username,String description,String link, LocalDate targetDate, Boolean done ){
+        Todo todo = new Todo(++todosCount,username,description,link ,targetDate,done);
         todos.add(todo);
     }
 
