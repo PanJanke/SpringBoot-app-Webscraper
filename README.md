@@ -5,10 +5,12 @@ WebScrapper Options:
 ![Webscrapper options](./readmeResources/s1.JPG)
 
 List of Scrapped Apartments:
-![](./readmeResources/1.jpg)
+![](./readmeResources/1.JPG)
 
-You can store apartments my apartments list, data is keeped in SQL database launched in docker conatiner, 
-![](./readmeResources/3.jpg)
+You can store apartments my apartments list: 
+![](./readmeResources/3.JPG)
+
+data is keeped in SQL database launched in docker conatiner.
 
 CRUD operations are implemented 
-![](./readmeResources/2.jpg)
+![](./readmeResources/2.JPG)
