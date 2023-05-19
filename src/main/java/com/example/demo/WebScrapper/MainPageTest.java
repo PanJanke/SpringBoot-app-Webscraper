@@ -63,6 +63,7 @@ public WebDriver driver;
             getApartmentsFromPage();
             resultsPage.goToNextPage();
         }
+        show(listOfApartments);
         driver.quit();
 
     }

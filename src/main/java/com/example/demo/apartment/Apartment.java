@@ -78,5 +78,14 @@ public class Apartment {
     }
 
 
+    @Override
+    public String toString() {
+        return "Apartment{" +
 
+                ", address='" + address + '\'' +
+                ", price='" + price + '\'' +
+
+                ", id=" + id +
+                '}';
+    }
 }

@@ -46,18 +46,11 @@ public class ResultsPage {
     public String getAddres(WebElement element){
         String adressText;
 
-        /*
-        List<WebElement> adress = element.findElements(By.xpath("./article/p"));
-        if (adress.size()!=0)
-            adressText = adress.get(0).getText();
-        else
-            adressText ="noData";
-        */
-
         //adressText
         SeleniumHelper.waitForElementToExist(driver,By.xpath("//div[@role='main']//div[@data-cy='search.listing.organic']//li[@data-cy='listing-item']//a[@data-cy='listing-item-link']/article/p"));
                 WebElement el =element.findElement(By.xpath("./article/p"));
-                adressText=el.getText();
+                //adressText=el.getText();
+                adressText=el.getAttribute("textContent");
         return adressText;
     }
 
@@ -81,6 +74,7 @@ public class ResultsPage {
         String pricePerSquareMeter = valuesContainer.get(1).findElement(By.xpath("./strong")).getText();
         String numberOfRooms = valuesContainer.get(2).getText();
         String squareMeters = valuesContainer.get(3).getText();
+
 
         return new Apartment(++counter,reflink,adressText,fullPrice,pricePerSquareMeter,numberOfRooms,squareMeters);
 
