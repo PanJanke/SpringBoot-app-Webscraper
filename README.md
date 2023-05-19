@@ -2,7 +2,7 @@
 Webscrapping app where you can browse avalivable apartments at otodom.pl website 
 
 WebScrapper Options:
-![Webscrapper options](./readmeResources/s1.jpg)
+![Webscrapper options](./readmeResources/s1.JPG)
 
 List of Scrapped Apartments:
 ![](./readmeResources/1.jpg)
